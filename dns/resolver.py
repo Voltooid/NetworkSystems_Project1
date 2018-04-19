@@ -50,24 +50,31 @@ class Resolver:
         # build iterative dns request
         # send request over UDP
 
-
+        hostname = Name(hostname)
         print("NEW QUERY:", hostname)
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.settimeout(self.timeout)
-        serveriplist = ["198.41.0.4"]
+        rootserverip = "198.41.0.4"
+        serveriplist = [rootserverip]
+        servernamelist = [hostname]
 
-        while len(serveriplist) != 0:
+        while len(serveriplist) != 0 or len(servernamelist) != 0:
             # Create and send query
-            question = Question(Name(hostname), Type.A, Class.IN)
+            ip = serveriplist[0]
+            if not (len(servernamelist) > 1):
+                del serveriplist[0]
+            servername = servernamelist[0]
+            if not (len(serveriplist) > 1):
+                del servernamelist[0]
+
+            print("\nREQUEST", servername, "FROM:", ip)
+            question = Question(servername, Type.A, Class.IN)
             header = Header(9001, 0, 1, 0, 0, 0)
             header.qr = 0
             header.opcode = 0
             header.rd = 0
             query = Message(header, [question])
 
-            ip = serveriplist[0]
-            del serveriplist[0]
-            print("\nREQUEST", hostname, "FROM:", ip)
             sock.sendto(query.to_bytes(), (ip, 53))
 
             # Receive response
@@ -85,29 +92,40 @@ class Resolver:
             print(" RD", response.header.rd, end=";")
             print(" RA", response.header.ra, end=";")
             print(" Z", response.header.z, end=";")
-            print(" RCODE", response.header.rcode, end=";")
+            print(" RCODE", response.header.rcode, end=";\n")
 
             if len(response.answers) != 0:
                 print("\n\tGOT RESPONSE")
+                servernamelist = []
+                serveriplist = []
                 for answer in response.answers:
                     if answer.type_ == Type.A:
-                        ipaddrlist.append(answer.rdata.address)
+                        if servername == hostname:
+                            ipaddrlist.append(answer.rdata.address)
+                        else:
+                            serveriplist = [answer.rdata.address]
+                            servernamelist = [hostname]
+                        print("\t\t", answer.type_, answer.rdata.address)
                     if answer.type_ == Type.CNAME:
                         aliaslist.append(hostname)
                         hostname = str(answer.rdata.cname)
-                serveriplist = []
+                        print("\t\t", answer.type_, answer.rdata.cname)
 
             if len(response.additionals) != 0: 
                 print("\n\tGOT ADDITIONALS")
                 serveriplist = []
+                servernamelist = [servername]
                 for answer in response.additionals:
                     if answer.type_ == Type.A:
                         serveriplist.append(answer.rdata.address)
                         print('\t\t', answer.type_, answer.rdata.address)
 
-            if len(response.authorities) != 0:
+            elif len(response.authorities) != 0:
                 print("\n\tGOT AUTHORITIES")
+                serveriplist = [rootserverip]
+                servernamelist = []
                 for answer in response.authorities:
+                    servernamelist.append(answer.rdata.nsdname)
                     print('\t\t', answer.type_, answer.rdata.nsdname)
             print("END")
 
