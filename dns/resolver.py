@@ -42,30 +42,75 @@ class Resolver:
         Returns:
             (str, [str], [str]): (hostname, aliaslist, ipaddrlist)
         """
+        # check cache
+        
+        # pick nameserver
+
+
+        # build iterative dns request
+        # send request over UDP
+
+
+        print("NEW QUERY:", hostname)
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.settimeout(self.timeout)
+        serveriplist = ["198.41.0.4"]
 
-        # Create and send query
-        question = Question(Name(hostname), Type.A, Class.IN)
-        header = Header(9001, 0, 1, 0, 0, 0)
-        header.qr = 0
-        header.opcode = 0
-        header.rd = 1
-        query = Message(header, [question])
-        sock.sendto(query.to_bytes(), ("8.8.8.8", 53))
+        while len(serveriplist) != 0:
+            # Create and send query
+            question = Question(Name(hostname), Type.A, Class.IN)
+            header = Header(9001, 0, 1, 0, 0, 0)
+            header.qr = 0
+            header.opcode = 0
+            header.rd = 0
+            query = Message(header, [question])
 
-        # Receive response
-        data = sock.recv(512)
-        response = Message.from_bytes(data)
+            ip = serveriplist[0]
+            del serveriplist[0]
+            print("\nREQUEST", hostname, "FROM:", ip)
+            sock.sendto(query.to_bytes(), (ip, 53))
 
-        # Get data
-        aliaslist = []
-        ipaddrlist = []
-        for answer in response.answers:
-            if answer.type_ == Type.A:
-                ipaddrlist.append(answer.rdata.address)
-            if answer.type_ == Type.CNAME:
-                aliaslist.append(hostname)
-                hostname = str(answer.rdata.cname)
+            # Receive response
+            data = sock.recv(512)
+            response = Message.from_bytes(data)
 
+            # Get data
+            aliaslist = []
+            ipaddrlist = []
+            print("\tFLAGS", end="")
+            print(" QR", response.header.qr, end=";")
+            print(" OPCODE", response.header.opcode, end=";")
+            print(" AA", response.header.aa, end=";")
+            print(" TC", response.header.tc, end=";")
+            print(" RD", response.header.rd, end=";")
+            print(" RA", response.header.ra, end=";")
+            print(" Z", response.header.z, end=";")
+            print(" RCODE", response.header.rcode, end=";")
+
+            if len(response.answers) != 0:
+                print("\n\tGOT RESPONSE")
+                for answer in response.answers:
+                    if answer.type_ == Type.A:
+                        ipaddrlist.append(answer.rdata.address)
+                    if answer.type_ == Type.CNAME:
+                        aliaslist.append(hostname)
+                        hostname = str(answer.rdata.cname)
+                serveriplist = []
+
+            if len(response.additionals) != 0: 
+                print("\n\tGOT ADDITIONALS")
+                serveriplist = []
+                for answer in response.additionals:
+                    if answer.type_ == Type.A:
+                        serveriplist.append(answer.rdata.address)
+                        print('\t\t', answer.type_, answer.rdata.address)
+
+            if len(response.authorities) != 0:
+                print("\n\tGOT AUTHORITIES")
+                for answer in response.authorities:
+                    print('\t\t', answer.type_, answer.rdata.nsdname)
+            print("END")
+
+
+        print("END OF QUERY:", hostname)
         return hostname, aliaslist, ipaddrlist
