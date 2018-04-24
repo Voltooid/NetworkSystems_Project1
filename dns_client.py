@@ -24,9 +24,9 @@ def resolve():
     args = parser.parse_args()
 
     resolver = Resolver(args.timeout, args.caching, args.ttl)
+    resolver.setLogging(False)
     hostname, aliaslist, ipaddrlist = resolver.gethostbyname(args.hostname)
 
-    print("\nFINAL RESULT")
     print(hostname)
     print(aliaslist)
     print(ipaddrlist)
