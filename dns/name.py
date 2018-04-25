@@ -31,15 +31,14 @@ class Name:
             return False
 
     def __str__(self):
-        result = ""
-        for label in self.labels:
-            result += label + "."
-        return result
+        return '.'.join(self.labels) + '.'
 
     def to_bytes(self, offset, compress=None):
         """Convert Name to bytes."""
         result = b""
         add_null = True
+        if self.labels == [""]:
+            return b"\x00"
         for i, label in enumerate(self.labels):
             name = ".".join(self.labels[i:]).lower()
             if compress is not None and name in compress:

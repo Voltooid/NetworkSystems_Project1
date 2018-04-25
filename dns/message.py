@@ -86,7 +86,6 @@ class Message:
         for _ in range(header.qd_count):
             question, offset = Question.from_bytes(packet, offset)
             questions.append(question)
-
         answers = []
         for _ in range(header.an_count):
             answer, offset = ResourceRecord.from_bytes(packet, offset)

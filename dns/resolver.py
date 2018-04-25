@@ -102,7 +102,7 @@ class Resolver:
 
     def resolve_request(self, ip, hostname):
         self.log("\nRESOLVING REQUEST", hostname, "at:", ip)
-        answers, authorities, additionals, resources = self.send_request(ip, hostname)
+        answers, authorities, additionals = self.send_request(ip, hostname)
 
         namelist = []
         ipaddrlist = []
@@ -147,7 +147,7 @@ class Resolver:
         """
 
         self.log("NEW QUERY:", hostname)
-        rootserverip = "198.41.0.4"
+        rootserverip = "127.0.0.1"
         serveriplist = [rootserverip]
 
         if self.caching:
@@ -177,3 +177,4 @@ class Resolver:
                 iplist.extend(serveriplist[1:])
                 serveriplist = iplist
         self.log("FAILURE")
+        return hostname, [], []

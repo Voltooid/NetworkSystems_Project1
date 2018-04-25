@@ -12,7 +12,7 @@ These classes are merely a suggestion, feel free to use something else.
 from dns.resource import *
 from dns.types import Type
 from dns.classes import Class
-
+import json
 
 class Catalog:
     """A catalog of zones"""
@@ -60,22 +60,26 @@ class Zone:
         dct = {}
         for line in lines:
             if line[0] != ";":
-                data = line.split('')
-                if(data[2] == 'NS'):
+                data = line.split()
+                if data[2] == 'NS':
                     t  = Type.NS
-                    rdata = NSRecordData(data[3])
-                elif(data[2] == 'A'):
-                   t  = Type.A
-                   rdata = ARecordData(data[3])
-                elif(data[2] == 'CNAME'):
-                   t  = Type.CNAME
-                   rdata = CNAMERecordData(data[3])
-                RR = ResourceRecord(data[0], t, Class.IN, int(data[1]), rdata)
-                if(data[0] in dct.keys()):
+                    rdata = NSRecordData(Name(data[3]))
+                elif data[2] == 'A':
+                    t  = Type.A
+                    rdata = ARecordData(data[3])
+
+                elif data[2] == 'CNAME':
+                    t  = Type.CNAME
+                    rdata = CNAMERecordData(Name(data[3]))
+                else:
+                    continue
+                RR = ResourceRecord(Name(data[0]), t, Class.IN, int(data[1]), rdata)
+                if data[0] in dct.keys() :
                     dct[data[0]].append(RR)
                 else:
                     dct[data[0]] = [RR]
-        for key, value dct.items():
+        
+        for key, value in dct.items():
             self.add_node(key, value)
 
                 

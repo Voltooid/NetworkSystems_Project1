@@ -6,7 +6,7 @@ This script contains the code for starting a DNS server.
 """
 
 
-from argparser import ArgumentParser
+from argparse import ArgumentParser
 
 from dns.server import Server
 
@@ -21,7 +21,8 @@ def run_server():
             help="Port which server listens on")
     args = parser.parse_args()
 
-    server = Server(args.port, args.caching, args.ttl)
+    # server = Server(args.port, args.caching, args.ttl)
+    server = Server(51, False, -1)
     try:
         server.serve()
     except KeyboardInterrupt:

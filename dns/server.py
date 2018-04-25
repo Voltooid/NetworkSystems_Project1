@@ -8,7 +8,14 @@ server using the algorithm described in section 4.3.2 of RFC 1034.
 
 
 from threading import Thread
-
+from dns.zone import Zone
+from dns.name import Name
+from dns.message import Message, Header
+from dns.types import Type
+from dns.classes import Class
+from dns.resource import ResourceRecord, NSRecordData, ARecordData
+import socket
+import struct
 
 class RequestHandler(Thread):
     """A handler for requests to the DNS server"""
@@ -38,11 +45,57 @@ class Server:
         self.ttl = ttl
         self.port = port
         self.done = False
+        self.zone = Zone()
+        self.zone.read_master_file('zone')
+
+    def log(self, *args, end="\n"):
+        if self.doLogging:
+            print(*args, end=end)
+
+    def search_zone(self, question):
+        tests = str(question).split('.')
+        for i in range(len(tests)):
+            test = '.'.join(tests[i:])
+            if test == '':
+                test = '.'
+            r = self.zone.records.get(test, None)
+            if not r == None:
+                return r
+        return None
 
     def serve(self):
         """Start serving requests"""
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.bind(("127.0.0.1", 53))
+
         while not self.done:
-            pass
+            data, address = sock.recvfrom(65565)
+            message = Message.from_bytes(data)
+            recursion = message.header.rd
+            for q in message.questions:
+                rlist = self.search_zone(q.qname)
+                answers = []
+                authorities = []
+                additionals = []
+                if rlist:
+                    for r in rlist: 
+                        if r.type_ == Type.A:
+                            answers.append(r)
+                        if r.type_ == Type.NS:
+                            a = self.search_zone(r.rdata.nsdname)
+                            authorities.append(r)
+                            additionals.append(a[0])
+                
+                header = Header(message.header.ident, 0,len(message.questions),len(answers),len(authorities),len(additionals))
+                header.qr = 1
+                header.opcode = 0
+                header.rd = recursion
+                header.ra = 1
+                header.aa = 1
+                mess = Message(header, questions=message.questions, answers=answers, authorities=authorities, additionals=additionals)
+                sock.sendto(mess.to_bytes(), address) 
+
+
 
     def shutdown(self):
         """Shut the server down"""
