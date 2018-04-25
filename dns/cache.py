@@ -10,6 +10,7 @@ It is highly recommended to use these.
 
 
 import json
+import time
 
 from dns.resource import ResourceRecord
 
@@ -23,7 +24,7 @@ class RecordCache:
         Args:
             ttl (int): TTL of cached entries (if > 0)
         """
-        self.records = []
+        self.records = {}
         self.ttl = ttl
 
     def lookup(self, dname, type_, class_):
@@ -37,7 +38,22 @@ class RecordCache:
             type_ (Type): type
             class_ (Class): class
         """
-        pass
+
+        res = []
+        for r in self.records:
+            if r.name == dname and r.type_ == type_ and r.class_ == class_:
+                if r.ttl < time.time():
+                    r = None
+                else:
+                    res.append(r)
+
+        self.records = [x for x in self.records if not x == None]
+
+        return res
+
+    def dump_cache(self):
+        for r in self.records:
+            print(r.to_dict())
 
     def add_record(self, record):
         """Add a new Record to the cache
@@ -45,7 +61,14 @@ class RecordCache:
         Args:
             record (ResourceRecord): the record added to the cache
         """
-        pass
+        record.ttl = record.ttl + time.time()
+        for x in self.records:
+            if x.name == record.name and x.type_ == record.type_ and x.class_ == record.class_:
+                key = list(x.rdata.to_dict().keys())[0]
+                if x.rdata.to_dict()[key] == record.rdata.to_dict()[key]:
+                    x = record
+                    return
+        self.records.append(record)
 
     def read_cache_file(self):
         """Read the cache file from disk"""

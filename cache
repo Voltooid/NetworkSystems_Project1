@@ -1,0 +1,254 @@
+[
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1763911,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns1.dns.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1763992,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns2.dns.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1764362,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns3.dns.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1764755,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns4.dns.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1765213,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns5.dns.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.17656,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns-nl.nic.fr."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "nl.",
+    "ttl": 1524786426.1766078,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "sns-pb.isc.org."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ns1.dns.nl.",
+    "ttl": 1524786426.1766634,
+    "class": "IN",
+    "rdata": {
+      "address": "193.176.144.5"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns2.dns.nl.",
+    "ttl": 1524786426.1766813,
+    "class": "IN",
+    "rdata": {
+      "address": "194.146.106.42"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns3.dns.nl.",
+    "ttl": 1524786426.1767004,
+    "class": "IN",
+    "rdata": {
+      "address": "194.171.17.10"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns4.dns.nl.",
+    "ttl": 1524786426.176743,
+    "class": "IN",
+    "rdata": {
+      "address": "95.142.99.212"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns5.dns.nl.",
+    "ttl": 1524786426.176768,
+    "class": "IN",
+    "rdata": {
+      "address": "194.0.28.53"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns-nl.nic.fr.",
+    "ttl": 1524786426.1767955,
+    "class": "IN",
+    "rdata": {
+      "address": "192.93.0.4"
+    },
+    "type": "A"
+  },
+  {
+    "name": "sns-pb.isc.org.",
+    "ttl": 1524786426.1768248,
+    "class": "IN",
+    "rdata": {
+      "address": "192.5.4.1"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ru.nl.",
+    "ttl": 1524617226.1881359,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns1.surfnet.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ru.nl.",
+    "ttl": 1524617226.1882234,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns4.ru.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ru.nl.",
+    "ttl": 1524617226.1883416,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns3.ru.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ns1.surfnet.nl.",
+    "ttl": 1524617226.1884735,
+    "class": "IN",
+    "rdata": {
+      "address": "192.87.106.101"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns3.ru.nl.",
+    "ttl": 1524617226.18858,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.78.16"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns4.ru.nl.",
+    "ttl": 1524617226.188695,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.78.17"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ru.nl.",
+    "ttl": 1524614226.1946998,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.78.60"
+    },
+    "type": "A"
+  },
+  {
+    "name": "cs.ru.nl.",
+    "ttl": 1524700062.4438717,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns2.science.ru.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "cs.ru.nl.",
+    "ttl": 1524700062.4439678,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns1.science.ru.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ns2.science.ru.nl.",
+    "ttl": 1524700062.4440255,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.16.133"
+    },
+    "type": "A"
+  },
+  {
+    "name": "ns1.science.ru.nl.",
+    "ttl": 1524700062.4440713,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.224.4"
+    },
+    "type": "A"
+  },
+  {
+    "name": "cs.ru.nl.",
+    "ttl": 1524700062.4537003,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.8.6"
+    },
+    "type": "A"
+  },
+  {
+    "name": "cs.ru.nl.",
+    "ttl": 1524700062.453956,
+    "class": "IN",
+    "rdata": {
+      "nsdname": "ns3.science.ru.nl."
+    },
+    "type": "NS"
+  },
+  {
+    "name": "ns3.science.ru.nl.",
+    "ttl": 1524700062.4541621,
+    "class": "IN",
+    "rdata": {
+      "address": "131.174.30.34"
+    },
+    "type": "A"
+  }
+]
