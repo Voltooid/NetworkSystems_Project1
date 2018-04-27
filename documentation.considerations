@@ -1,0 +1,14 @@
+We improved name.py (check Documentation.nameEdgeCase), so that maybe useful to look at :)
+
+Also when running dns_test.py it is necessary to first run dns_server.py in a separate terminal.
+
+We also added a parameter to the resolver that let's you choose the root nameserver it uses. 
+This was so we use the resolver to test the server.
+
+We added a wrapper to the print function that simply checks if self.doLogging is True before printing.
+This was so we can have quickly turn of the debug extensive logging (Which is very pretty so check that out).
+
+Finally, for DNS server we had some trouble figuring out how it should work. 
+What the cache was supposed to do in the server, what the zone should do. what order it should work in etc.
+We discussed this with a friend of ours (Lars Willemsen) and ended up making the DNS server together (oops).
+So our DNS server implementation will be the same.

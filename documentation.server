@@ -1,0 +1,30 @@
+DNS server
+
+The DNS server follows the algorithm as described in the assignment.
+
+(1) 
+when the DNS server starts loads the zone file using zone.py.
+this file contains any zone information in the format:
+NAME | TTL | TYPE | RDATA
+any comments must be on separate lines starting with: ';'
+
+(2)
+It uses the socket interface to start listening port 53
+and blocks until it receives a request.
+
+(3)
+It consults the zone file. It starts with the full name and iteratively reduces the domain name until it either:
+finds a match, returning True with the set of domain names,
+or has checked all the domains in the FQDN in which case it returns false with an empty list.
+
+the full zone resulotion will in case of a match add that to the answers list or in case of a referral to the authoraties list. 
+(making sure to also add the ips for the autoratie to addionals)
+this will repeat till every question has some result or is an empty list.
+
+Should this fail to get a match, the cache is checked and any results are put in the answers section.
+
+(4)
+at this point if recursion is enabled and the server has still no answers/referrals the resolver is consulted
+
+(5)
+Using the resulting lists a response message is built and send back

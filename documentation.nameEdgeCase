@@ -1,0 +1,13 @@
+Name.to_byte(...) converts a Name object to a byte string in this format
+len;label;\x00
+since the . isn't part of the label the result is a name label '' (an empty string)
+this causes the to_byte function to try and process that empty string, resulting in:
+len = \x00, label is empty and the \x00. Together that makes b'\x00\x00'
+this ofcourse is a problem.
+when the message is recieved by the resolver it tries to process the dns message
+When tries to read the name using Name.from_byte it sees a \x00 and thinks there is no name without seeing the second \x00.
+The next step in the process is to read the Type bytes, but now there is an extra \x00 causing an error and the dns messages is invalid.
+
+The solution is to add an exeption to Name.to_bytes() simply stating:
+if self.labels == [""]:
+	return b"\x00"

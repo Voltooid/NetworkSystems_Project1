@@ -1,0 +1,46 @@
+Rens Althuis (s4813081)
+Abdulkarim Abdulkair (s4840933)
+
+We didn't have any particular challenges, most of the work was put in to figuring out how the dns server is supposed to work.
+One particular problem we had was an edgecase in name.py, it doesn't handle the input '.' correctly. 
+Since we tried to get our nameserver to act as a root server we ran into this problem:
+See documentation.nameEdgeCase for more info on that.
+
+another interesting problem was that when querying google.nl the nl servers simply redirect to ns*.google.com.
+Since com. is outside of the nl domain it refuses to give any ip addresses for that domain and answers with the authorities and no additionals.
+This leaves us to start a new query, first resolving the ns*.google.com addresses and then using those to request google.nl.
+This we fixed by using a recursive call to gethostbyname() when necessary. 
+This is easy to miss, google.com seems to be the only domain we tested that works this way.
+
+The general flow looks like this
+
+-> Client calls upon the resolver to resolve an address
+-> Resolver checks cache for matches
+-> Resolver iteratively calls nameservers starting at the root server as specified in the init parameters
+	-> if it gets a referral it adds the ip addresses to the beginning of the list and queries the list from the start
+		-> should the referral not come with an ip address in the additional section it first resolves that domain name
+	-> if it gets a match it returns that match
+
+-> Name server starts and loads zone + cache files
+-> Name server listens to a request
+-> Name server receives a request and processes the message
+-> Name server checks zone for matches agains the questions
+	-> if match is found this is added to the answer sections
+		-> rcode = 0
+		-> aa = 1
+	-> if referrals are found these are added to authorities with additional ip in the additional section
+		-> rcode = 0
+		-> aa = 1
+	-> if neither matches nor referrals are found the cache is checked
+		-> if it matches the server adds this to the answers section
+			-> rcode = 0
+			-> aa = 0
+		-> if no matches are found check if recursion is desired
+			-> if rd = 1 call a copy of the resolver to resolve the questions
+				-> aa = 1
+			-> if rd = 0 answers/authorities/additionals sections will be empty
+				-> rcode = 3
+-> set rd to message.rd
+-> build a response using questions/answers/authorities/additionals
+-> send the resonse back to the original sender.
+

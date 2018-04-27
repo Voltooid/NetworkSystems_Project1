@@ -123,7 +123,7 @@ class Server:
     def serve(self):
         """Start serving requests"""
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.bind(("127.0.0.1", self.port))
+        sock.bind(("", self.port))
 
         while not self.done:
             data, address = sock.recvfrom(65565)
@@ -157,8 +157,6 @@ class Server:
                         self.log("\t\tRESOLVING:", q.qname)
 
                         hostname, namelist, iplist = resolver.gethostbyname(str(q.qname))
-                        print(iplist)
-                        print(namelist)
                         if hostname == str(q.qname):
                             for ip in iplist:
                                 answers.append(ResourceRecord(q.qname, Type.A, Class.IN, self.ttl, ARecordData(ip)))

@@ -1,0 +1,17 @@
+Dns Resolver
+
+Follows the step from the assignment closely
+
+It recieves the FQDN as string,
+then checkes the cache to see if it has a match.
+If so it responds with the match.
+if it has a partial match (higher domain) it gets the ip's of the closer nameservers and uses those to start out.
+
+Then with the list of ips to check it starts at the first index in the list and queries it for a the hostname.
+if it gets a referral it deletes the ip form the list and prepends the referred ips to the list.
+since it always grabs the first index this functions the same way as a list of lists but better :)
+More of a depth first search with a queue than a list.
+In case the resolver ips in the iplist it returns empty lists.
+
+This repeats until it gets an answer instead of referral.
+If it gets a match it returns the addresses and cnames found.

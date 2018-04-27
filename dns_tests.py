@@ -57,7 +57,7 @@ def run_tests():
     parser = ArgumentParser(description="DNS Tests")
     parser.add_argument("-s", "--server", type=str, default="localhost",
                         help="the address of the server")
-    parser.add_argument("-p", "--port", type=int, default=5001,
+    parser.add_argument("-p", "--port", type=int, default=53,
                         help="the port of the server")
     args, extra = parser.parse_known_args()
     global PORT, SERVER
