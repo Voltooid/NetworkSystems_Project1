@@ -1,254 +1,263 @@
 [
   {
-    "name": "nl.",
-    "ttl": 1524786426.1763911,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns1.dns.nl."
+      "nsdname": "e.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3496745
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.1763992,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns2.dns.nl."
+      "nsdname": "b.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3496845
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.1764362,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns3.dns.nl."
+      "nsdname": "j.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3497243
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.1764755,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns4.dns.nl."
+      "nsdname": "m.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3497527
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.1765213,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns5.dns.nl."
+      "nsdname": "i.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.349789
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.17656,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns-nl.nic.fr."
+      "nsdname": "f.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3498352
   },
   {
-    "name": "nl.",
-    "ttl": 1524786426.1766078,
-    "class": "IN",
     "rdata": {
-      "nsdname": "sns-pb.isc.org."
+      "nsdname": "a.gtld-servers.net."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3498924
   },
   {
-    "name": "ns1.dns.nl.",
-    "ttl": 1524786426.1766634,
-    "class": "IN",
     "rdata": {
-      "address": "193.176.144.5"
+      "nsdname": "g.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3499596
   },
   {
-    "name": "ns2.dns.nl.",
-    "ttl": 1524786426.1766813,
-    "class": "IN",
     "rdata": {
-      "address": "194.146.106.42"
+      "nsdname": "h.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3500407
   },
   {
-    "name": "ns3.dns.nl.",
-    "ttl": 1524786426.1767004,
-    "class": "IN",
     "rdata": {
-      "address": "194.171.17.10"
+      "nsdname": "l.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3501291
   },
   {
-    "name": "ns4.dns.nl.",
-    "ttl": 1524786426.176743,
-    "class": "IN",
     "rdata": {
-      "address": "95.142.99.212"
+      "nsdname": "k.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3502538
   },
   {
-    "name": "ns5.dns.nl.",
-    "ttl": 1524786426.176768,
-    "class": "IN",
     "rdata": {
-      "address": "194.0.28.53"
+      "nsdname": "c.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.350363
   },
   {
-    "name": "ns-nl.nic.fr.",
-    "ttl": 1524786426.1767955,
-    "class": "IN",
     "rdata": {
-      "address": "192.93.0.4"
+      "nsdname": "d.gtld-servers.net."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "com.",
+    "ttl": 1524996067.3504832
   },
   {
-    "name": "sns-pb.isc.org.",
-    "ttl": 1524786426.1768248,
-    "class": "IN",
     "rdata": {
-      "address": "192.5.4.1"
+      "address": "192.12.94.30"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "e.gtld-servers.net.",
+    "ttl": 1524996067.3506122
   },
   {
-    "name": "ru.nl.",
-    "ttl": 1524617226.1881359,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns1.surfnet.nl."
+      "address": "192.33.14.30"
     },
-    "type": "NS"
+    "type": "A",
+    "class": "IN",
+    "name": "b.gtld-servers.net.",
+    "ttl": 1524996067.3506546
   },
   {
-    "name": "ru.nl.",
-    "ttl": 1524617226.1882234,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns4.ru.nl."
+      "address": "192.48.79.30"
     },
-    "type": "NS"
+    "type": "A",
+    "class": "IN",
+    "name": "j.gtld-servers.net.",
+    "ttl": 1524996067.350698
   },
   {
-    "name": "ru.nl.",
-    "ttl": 1524617226.1883416,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns3.ru.nl."
+      "address": "192.55.83.30"
     },
-    "type": "NS"
+    "type": "A",
+    "class": "IN",
+    "name": "m.gtld-servers.net.",
+    "ttl": 1524996067.3507445
   },
   {
-    "name": "ns1.surfnet.nl.",
-    "ttl": 1524617226.1884735,
-    "class": "IN",
     "rdata": {
-      "address": "192.87.106.101"
+      "address": "192.43.172.30"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "i.gtld-servers.net.",
+    "ttl": 1524996067.350795
   },
   {
-    "name": "ns3.ru.nl.",
-    "ttl": 1524617226.18858,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.78.16"
+      "address": "192.35.51.30"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "f.gtld-servers.net.",
+    "ttl": 1524996067.3508487
   },
   {
-    "name": "ns4.ru.nl.",
-    "ttl": 1524617226.188695,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.78.17"
+      "address": "192.5.6.30"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "a.gtld-servers.net.",
+    "ttl": 1524996067.3509047
   },
   {
-    "name": "ru.nl.",
-    "ttl": 1524614226.1946998,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.78.60"
+      "nsdname": "ns2.google.com."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "google.com.",
+    "ttl": 1524996067.369607
   },
   {
-    "name": "cs.ru.nl.",
-    "ttl": 1524700062.4438717,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns2.science.ru.nl."
+      "nsdname": "ns1.google.com."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "google.com.",
+    "ttl": 1524996067.3696952
   },
   {
-    "name": "cs.ru.nl.",
-    "ttl": 1524700062.4439678,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns1.science.ru.nl."
+      "nsdname": "ns3.google.com."
     },
-    "type": "NS"
+    "type": "NS",
+    "class": "IN",
+    "name": "google.com.",
+    "ttl": 1524996067.3697796
   },
   {
-    "name": "ns2.science.ru.nl.",
-    "ttl": 1524700062.4440255,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.16.133"
+      "nsdname": "ns4.google.com."
     },
-    "type": "A"
+    "type": "NS",
+    "class": "IN",
+    "name": "google.com.",
+    "ttl": 1524996067.3698637
   },
   {
-    "name": "ns1.science.ru.nl.",
-    "ttl": 1524700062.4440713,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.224.4"
+      "address": "216.239.34.10"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "ns2.google.com.",
+    "ttl": 1524996067.3699603
   },
   {
-    "name": "cs.ru.nl.",
-    "ttl": 1524700062.4537003,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.8.6"
+      "address": "216.239.32.10"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "ns1.google.com.",
+    "ttl": 1524996067.3700392
   },
   {
-    "name": "cs.ru.nl.",
-    "ttl": 1524700062.453956,
-    "class": "IN",
     "rdata": {
-      "nsdname": "ns3.science.ru.nl."
+      "address": "216.239.36.10"
     },
-    "type": "NS"
+    "type": "A",
+    "class": "IN",
+    "name": "ns3.google.com.",
+    "ttl": 1524996067.3701193
   },
   {
-    "name": "ns3.science.ru.nl.",
-    "ttl": 1524700062.4541621,
-    "class": "IN",
     "rdata": {
-      "address": "131.174.30.34"
+      "address": "216.239.38.10"
     },
-    "type": "A"
+    "type": "A",
+    "class": "IN",
+    "name": "ns4.google.com.",
+    "ttl": 1524996067.3702285
+  },
+  {
+    "rdata": {
+      "address": "172.217.17.110"
+    },
+    "type": "A",
+    "class": "IN",
+    "name": "google.com.",
+    "ttl": 2224824033.5866985
   }
 ]

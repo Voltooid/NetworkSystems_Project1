@@ -21,10 +21,13 @@ def resolve():
                         help="Enable caching")
     parser.add_argument("-t", "--ttl", metavar="time", type=int, default=0,
                         help="TTL value of cached entries (if > 0)")
+    parser.add_argument("-n", "--nameserver", type=str, default="198.41.0.4",
+                        help="set nameserver")
     args = parser.parse_args()
 
-    resolver = Resolver(args.timeout, args.caching, args.ttl)
-    resolver.setLogging(False)
+    resolver = Resolver(args.timeout, args.caching, args.ttl, args.nameserver)
+    resolver.rd = 0
+    resolver.doLogging = True
     hostname, aliaslist, ipaddrlist = resolver.gethostbyname(args.hostname)
 
     print(hostname)

@@ -21,8 +21,7 @@ def run_server():
             help="Port which server listens on")
     args = parser.parse_args()
 
-    # server = Server(args.port, args.caching, args.ttl)
-    server = Server(51, False, -1)
+    server = Server(args.port, args.caching, args.ttl)
     try:
         server.serve()
     except KeyboardInterrupt:

@@ -20,7 +20,7 @@ from dns.cache import RecordCache
 class Resolver:
     """DNS resolver"""
 
-    def __init__(self, timeout, caching, ttl):
+    def __init__(self, timeout, caching, ttl, rootip="198.41.0.4"):
         """Initialize the resolver
 
         Args:
@@ -31,12 +31,12 @@ class Resolver:
         self.caching = caching
         self.ttl = ttl
         self.doLogging = False
+        self.rootip = rootip
+        self.rd = 0
+
         if self.caching:
             self.cache = RecordCache(ttl)
             self.cache.read_cache_file()
-
-    def setLogging(self, val):
-        self.doLogging = val
 
     def log(self, *args, end="\n"):
         if self.doLogging:
@@ -59,7 +59,7 @@ class Resolver:
         if not (iplist == [] and namelist == []):
             iplist = [x.rdata.address for x in iplist]
             namelist = [x.rdata.cname for x in namelist]
-            return hostname, iplist, namelist
+            return True, iplist, namelist
 
         hostname = hostname.split('.')
         for i in range(len(hostname)):
@@ -71,7 +71,7 @@ class Resolver:
                     newips = self.cache.lookup(x, Type.A, Class.IN)
                     iplist.extend(newips)
                 iplist = [x.rdata.address for x in iplist]
-                return test, iplist, namelist
+                return False, iplist, namelist
         return False, [], []
 
     def send_request(self, ip, name):
@@ -84,7 +84,7 @@ class Resolver:
         header = Header(9001, 0, 1, 0, 0, 0)
         header.qr = 0
         header.opcode = 0
-        header.rd = 0
+        header.rd = self.rd
         query = Message(header, [question])
 
         sock.sendto(query.to_bytes(), (ip, 53))
@@ -147,14 +147,13 @@ class Resolver:
         """
 
         self.log("NEW QUERY:", hostname)
-        rootserverip = "127.0.0.1"
-        serveriplist = [rootserverip]
+        serveriplist = [self.rootip]
 
         if self.caching:
             res, iplist, namelist = self.check_cache(hostname)
-            if res:
-                self.log("CACHE HIT:", res)
-                if Name(res) == Name(hostname):
+            if not (iplist == [] and namelist == []):
+                self.log("CACHE HIT")
+                if res:
                     return hostname, namelist, iplist
                 else:
                     serveriplist = iplist
@@ -177,4 +176,5 @@ class Resolver:
                 iplist.extend(serveriplist[1:])
                 serveriplist = iplist
         self.log("FAILURE")
+        return hostname, [], []
         return hostname, [], []
