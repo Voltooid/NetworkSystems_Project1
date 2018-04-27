@@ -123,7 +123,7 @@ class Server:
     def serve(self):
         """Start serving requests"""
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.bind(("127.0.0.1", 53))
+        sock.bind(("127.0.0.1", self.port))
 
         while not self.done:
             data, address = sock.recvfrom(65565)

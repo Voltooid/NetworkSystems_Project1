@@ -91,6 +91,7 @@ class Resolver:
 
         # Receive response
         data = sock.recv(512)
+        sock.close()
         response = Message.from_bytes(data)
         self.logHeader(response.header)
         if self.caching:
@@ -128,8 +129,9 @@ class Resolver:
             if len(authorities) != 0:
                 self.log("\n\tGOT AUTHORITIES")
                 for answer in authorities:
-                    namelist.append(answer.rdata.nsdname)
-                    self.log('\t\t', answer.type_, answer.rdata.nsdname)
+                    if answer.type_ == Type.NS:
+                        namelist.append(answer.rdata.nsdname)
+                        self.log('\t\t', answer.type_, answer.rdata.nsdname)
 
             return False, ipaddrlist, namelist
 

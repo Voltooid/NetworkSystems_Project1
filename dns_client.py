@@ -26,7 +26,6 @@ def resolve():
     args = parser.parse_args()
 
     resolver = Resolver(args.timeout, args.caching, args.ttl, args.nameserver)
-    resolver.rd = 0
     resolver.doLogging = True
     hostname, aliaslist, ipaddrlist = resolver.gethostbyname(args.hostname)
 
